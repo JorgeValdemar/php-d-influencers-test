@@ -1,0 +1,12 @@
+# local node modules
+node_modules
+
+# test videos and screenshots
+cypress/videos
+cypress/screenshots
+
+# dev config
+cypress.env.json
+
+# eslint
+.eslintcache
