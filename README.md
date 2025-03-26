@@ -22,7 +22,20 @@ Um teste para a magnum, contendo um projeto completo neste repositório.
 
 ### Instruções para rodar o ambiente localmente.
 
+# Executar o comando na pasta raiz
+`
+docker-compose up --build
+`
 
+# Posteriormente após o build é possível
+`
+docker-compose up -d
+`
+
+# Para desligar
+`
+docker-compose down
+`
 
 ### Instruções para testar os endpoints.
 
