@@ -3,7 +3,7 @@ ARG NODE_VERSION=23.9.0
 # config base
 FROM node:${NODE_VERSION}-alpine as base
 WORKDIR /usr/src/app
-EXPOSE 5173
+EXPOSE 3000
 
 # bloco de frontend vinda de base declarando o PATH
 FROM base as frontend
@@ -18,11 +18,11 @@ RUN apk update && apk add bash
 # instalar as derendencias do react
 RUN npm ci
 RUN npm i --silent
+RUN npm install react-scripts@5.0.1 -g --silent
 
 # permissoes
 RUN chown -R node:node /usr/src/app/.
 USER node
 
 # rodar
-# opcoes => "build": "react-router build" | "dev": "react-router dev" | "start": "react-router-serve ./build/server/index.js"
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]

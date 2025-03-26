@@ -27,12 +27,27 @@ Um teste para a magnum, contendo um projeto completo neste repositório.
 docker-compose up --build
 `
 
-# Posteriormente após o build é possível
+# rodar o composer
+`
+docker exec -it api sh -c "composer install"
+`
+
+# criar a chave
+`
+docker exec -it api sh -c "php artisan key:generate"
+`
+
+# rodar as migrations
+`
+docker exec -it api sh -c "php artisan migrate"
+`
+
+# Posteriormente após o build, o trabalho de rotina será apenas
 `
 docker-compose up -d
 `
 
-# Para desligar
+# Para desligar será
 `
 docker-compose down
 `

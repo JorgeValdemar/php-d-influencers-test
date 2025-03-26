@@ -31,7 +31,7 @@ services:
       dockerfile: front-end/Dockerfile
     stdin_open: true
     ports:
-      - 5173:5173
+      - 3000:3000
     volumes:
       - /app/node_modules
       - ./front-end/www:/usr/src/app
@@ -42,6 +42,8 @@ services:
   server:
     container_name: server
     image: nginx:latest
+    depends_on:
+      - api
     ports:
       - '8000:80'
     volumes:
@@ -58,7 +60,7 @@ services:
       dockerfile: back-end/Dockerfile
     depends_on:
       database:
-        condition: service_healthy 
+        condition: service_healthy    
     links:
       - database
     volumes:
