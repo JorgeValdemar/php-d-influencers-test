@@ -5,10 +5,10 @@ Um teste para a magnum, contendo um projeto completo neste repositório.
 
 ** Infraestrutura: **
 - PHP: Versão 8.4
-- Banco de dados: MySQL
+- Banco de dados: MySQL 8 (+ adicionalmente o docker valida se o banco está funcionando)
 - Servidor Web: Nginx
 - Framework PHP: Laravel 12 (Para que eu consiga uma entrega mais agíl e bem estruturada)
-- Front-end: ReactJS Versão 19 (React Router v7) => Endereço Dev: http://localhost:5173/
+- Front-end: ReactJS (Usei a última versão WebPack, o Vite estava bloqueando a porta do container, não quis perder tempo) => Endereço Dev: http://localhost:3000/
 - Back-end Endereço Dev: http://localhost:8000/
 - Cypress Endereço Dev: 
 
