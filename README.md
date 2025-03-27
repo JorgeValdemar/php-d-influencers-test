@@ -10,7 +10,7 @@ Um teste para a magnum, contendo um projeto completo neste repositório.
 - Framework PHP: Laravel 12 (Para que eu consiga uma entrega mais agíl e bem estruturada)
 - Front-end: ReactJS (Usei a última versão WebPack, o Vite estava bloqueando a porta do container, não quis perder tempo) => Endereço Dev: http://localhost:3000/
 - Back-end Endereço Dev: http://localhost:8000/
-- Documentação do Postman: https://documenter.getpostman.com/view/32118189/2sAYkLmweB
+- Documentação do Postman (usar o ambiente **DEVELOPERENV**): https://documenter.getpostman.com/view/32118189/2sAYkLmweB
 
 ** Padrões e considerações aplicadas: **
 - As funções, váriaveis são completamente em inglês, sendo apenas a interface de usuário em Português.
@@ -198,6 +198,6 @@ Resposta:
 ```
 
 > [!NOTE]
-> É possível ver mais na documentação do postman mencionado no início desta doc: 
+> É possível ver mais na documentação do postman mencionado no início desta doc (usar o ambiente **DEVELOPERENV**): 
 > https://documenter.getpostman.com/view/32118189/2sAYkLmweB
 
