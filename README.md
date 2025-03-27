@@ -31,10 +31,10 @@ Este modelo é ideal e escalável até grande porte desde que o uso da injeção
 
 ## estrutura de pastas: ReactJS
 `
-oooooooooooooooooooooo
-oooooooooooooooooooooo
-oooooooooooooooooooooo
-oooooooooooooooooooooo
+components: os componentes para reuso no react
+pages: as páginas para acesso
+services: rotas da api chamadas pelo axios
+scss: estilo
 `
 
 ### Instruções para rodar o ambiente localmente.
@@ -91,6 +91,13 @@ php artisan test
 > [!NOTE]
 > Os testes com PHPUnit estão focados no end-to-end, para manter o teste o mais preciso está fazendo cadastros e depois limpando após cada teste.
 > Serão testadas as rotas de usuário, campaigns e influencer bem como o vínculo entre os dois.
+
+
+> [!NOTE]
+> Caso precise olhar o banco de teste direto no user mysql, pode ser preciso dar permissão
+`
+GRANT ALL PRIVILEGES ON laravel_test.* TO dinfluser;
+`
 
 ### Documentação dos endpoints.
 
