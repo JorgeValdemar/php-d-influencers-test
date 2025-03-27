@@ -14,8 +14,9 @@ class Influencers extends Component {
         let { user } = this.props;
         
         InfluencersService.setToken(user.jwt);
-        InfluencersService.listInfluencers([], function(listCampaigns) {
-            this.setState({ listCampaigns });
+        InfluencersService.listInfluencers([], function(listInfluencers) {
+            console.log(listInfluencers);
+            this.setState({ listInfluencers });
         }.bind(this));
     }
 
@@ -26,18 +27,19 @@ class Influencers extends Component {
             <div className="App-header">
                 <h2>Influenciadores cadastrados</h2>
                 
-                <ListGroup>
+                <ListGroup numbered>
                     {
                         listInfluencers.length > 0 ?
                         listInfluencers.map(
                             influencer => (
-                                <ListGroup.Item key={influencer.id}>
+                                <ListGroup.Item key={influencer.id} className='list-simple-v1'>
                                     Nome: {influencer.name}
+                                    <br />
                                     Instagram: {influencer.instagram}
+                                    <br />
                                     Seguidores: {influencer.qtd_followers}
+                                    <br />
                                     Categoria: {influencer.category}
-                                    Criada em: {influencer.created_at}
-                                    última atualização: {influencer.updated_at}
                                 </ListGroup.Item>
                             )
                         ) : "Nenhum influenciador cadastrado."

@@ -4,13 +4,13 @@ class CampaignsService {
     static setToken = (token) => {
         Api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     };
-    
+
     static listCampaigns = async (data, callback) => {
         try {
             let response = await Api.get(`/campaigns/list`, data);
 
             if (!response.data.error) {
-                callback(true, response.data.user, response.data.token);
+                callback(response.data);
             } else {
                 callback('Falha ao criar autenticação');
             }
