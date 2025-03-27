@@ -73,7 +73,17 @@ docker-compose down
 
 ## PHPUit
 
-# Para rodar os testes, execute
+# Para testar rode no seu terminal
+`
+docker exec -it api sh
+`
+
+# Para rodar os testes, faça a base de testes ficar com a estrutura atualizada
+`
+php artisan migrate --database='testing'
+`
+
+# Agora dentro do container faça
 `
 php artisan test
 `
