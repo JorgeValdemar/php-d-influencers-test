@@ -33,10 +33,9 @@ class CampaignsService
             return ['error' => $validator->errors()];
         }
 
+        $campaign = $this->campaignsRepository->insertCampaign($data);
 
-        $id = $this->campaignsRepository->insertCampaign($data);
-
-        return ['id' => $id];
+        return ['campaign' => $campaign];
     }
     
     /**

@@ -17,9 +17,9 @@ class CampaignsRepository extends Repository
      * @param array $data data to insert
      * @return int ID primary
      */
-    public function insertCampaign(array $data): int
+    public function insertCampaign(array $data): Campaigns
     {
-        return Campaigns::insertGetId($data);
+        return Campaigns::create($data);
     }
 
     /**

@@ -13,7 +13,12 @@ class Influencers extends Model
      *
      * @var list<string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        "name",
+        "instagram",
+        "qtd_followers",
+        "category"
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
