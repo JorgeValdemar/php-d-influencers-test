@@ -9,26 +9,26 @@ use Illuminate\Support\Facades\Route;
 // groups without restrict access
 Route::group([], function (): void {
     Route::controller(JWTAuthController::class)->group(function(): void {
-        Route::get('/user/login', 'login');
-        Route::post('/user/register', 'register');
+        Route::post('/user/login', 'login')->name('user.login');
+        Route::post('/user/register', 'register')->name('user.register');
     });
 });
 
 // groups with restrict access
 Route::middleware([JwtMiddleware::class])->group( function (): void {
     Route::controller(JWTAuthController::class)->group(function(): void {
-        Route::post('/user/logout', 'logout');
+        Route::post('/user/logout', 'logout')->name('user.logout');
     });
 
     Route::controller(InfluencersController::class)->group(function(): void {
-        Route::post('/influencers/save', 'saveInfluencers');
-        Route::get('/influencers/list', 'listInfluencers');
+        Route::post('/influencers/save', 'saveInfluencers')->name('influencers.save');
+        Route::get('/influencers/list', 'listInfluencers')->name('influencers.list');
     });
     
     Route::controller(CampaignsController::class)->group(function(): void {
-        Route::post('/campaigns/save', 'saveCampaign');
-        Route::get('/campaigns/list', 'listCampaign');
-        Route::post('/campaigns/influencers/apply', 'applyInfluencersToCampaign');
-        Route::get('/campaigns/influencers/list/{id}', 'listCampaignInfluencers')->where(['id' => '[0-9]+']);;
+        Route::post('/campaigns/save', 'saveCampaign')->name('campaigns.save');
+        Route::get('/campaigns/list', 'listCampaign')->name('campaigns.list');
+        Route::post('/campaigns/influencers/apply', 'applyInfluencersToCampaign')->name('campaigns.influencers.apply');
+        Route::get('/campaigns/influencers/list/{id}', 'listCampaignInfluencers')->where(['id' => '[0-9]+'])->name('campaigns.influencers.list');
     });
 });

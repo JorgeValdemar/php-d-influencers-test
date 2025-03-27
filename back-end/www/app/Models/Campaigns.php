@@ -13,7 +13,13 @@ class Campaigns extends Model
      *
      * @var list<string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        "name",
+        "budget",
+        "description",
+        "begin_date",
+        "end_date"
+    ];
 
     /**
      * The attributes that should be hidden for serialization.

@@ -12,9 +12,9 @@ class InfluencersRepository extends Repository
      * @param array $data
      * @return int
      */
-    public function insertInfluencer(array $data): int
+    public function insertInfluencer(array $data): Influencers
     {
-        return Influencers::insertGetId($data);
+        return Influencers::create($data);
     }
 
     /**

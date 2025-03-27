@@ -30,9 +30,9 @@ class InfluencersService
             return ['error' => $validator->errors()];
         }
 
-        $id = $this->influencersRepository->insertInfluencer($data);
+        $influencer = $this->influencersRepository->insertInfluencer($data);
 
-        return ['id' => $id];
+        return ['influencer' => $influencer];
     }
     
     /**
