@@ -1,0 +1,1 @@
+export const USER_UPDATE_VALUE = 'USER_UPDATE_VALUE';

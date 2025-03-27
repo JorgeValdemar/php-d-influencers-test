@@ -1,0 +1,15 @@
+@use "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+@import "_global";
+
+@import "../components/header/style.scss";
+@import "../components/simple-list/style.scss";
+
+@import "../pages/home/style.scss";
+@import "../pages/user/login/style.scss";
+@import "../pages/user/register/style.scss";
+@import "../pages/influencers/style.scss";
+@import "../pages/campaigns/style.scss";
+@import "../pages/campaign/style.scss";
+
