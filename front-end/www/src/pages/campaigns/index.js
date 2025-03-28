@@ -26,19 +26,21 @@ class Campaigns extends Component {
             <div className="App-header">
                 <h2>Campanhas cadastradas</h2>
                 
-                <ListGroup>
+                <ListGroup numbered>
                     {
                         listCampaigns.length > 0 ?
                         listCampaigns.map(
                             campaign => (
-                                <ListGroup.Item key={campaign.id}>
+                                <ListGroup.Item key={campaign.id} className='list-simple-v1'>
                                     Nome: {campaign.name}
+                                    <br />
                                     Valor: {campaign.budget}
+                                    <br />
                                     Descrição: {campaign.description}
+                                    <br />
                                     Início: {campaign.begin_date}
+                                    <br />
                                     Encerramento: {campaign.end_date}
-                                    Criada em: {campaign.created_at}
-                                    última atualização: {campaign.updated_at}
                                 </ListGroup.Item>
                             )
                         ) : "Nenhuma campanha cadastrada"

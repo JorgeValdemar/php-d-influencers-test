@@ -4,13 +4,13 @@ class InfluencersService {
     static setToken = (token) => {
         Api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     };
-    
+
     static listInfluencers = async (data, callback) => {
         try {
-            let response = await Api.get(`/campaigns/list`, data);
+            let response = await Api.get(`/influencers/list`, data);
 
             if (!response.data.error) {
-                callback(true, response.data.user, response.data.token);
+                callback(response.data);
             } else {
                 callback('Falha ao criar autenticação');
             }
