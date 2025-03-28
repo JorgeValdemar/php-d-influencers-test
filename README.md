@@ -82,6 +82,10 @@ docker exec -it api sh
 `
 php artisan migrate --database='testing'
 `
+# OU 
+`
+docker exec -it api sh -c "php artisan migrate --database='testing'"
+`
 
 # Agora dentro do container faça
 `
@@ -92,12 +96,6 @@ php artisan test
 > Os testes com PHPUnit estão focados no end-to-end, para manter o teste o mais preciso está fazendo cadastros e depois limpando após cada teste.
 > Serão testadas as rotas de usuário, campaigns e influencer bem como o vínculo entre os dois.
 
-
-> [!NOTE]
-> Caso precise olhar o banco de teste direto no user mysql, pode ser preciso dar permissão
-`
-GRANT ALL PRIVILEGES ON laravel_test.* TO dinfluser;
-`
 
 ### Documentação dos endpoints.
 
@@ -201,3 +199,13 @@ Resposta:
 > É possível ver mais na documentação do postman mencionado no início desta doc (usar o ambiente **DEVELOPERENV**): 
 > https://documenter.getpostman.com/view/32118189/2sAYkLmweB
 
+### Comandos do docker
+
+# acessar a API do laravel
+docker exec -if api sh
+
+# acessar o banco
+docker exec -if database sh
+
+# acessar o reactjs
+docker exec -if client sh

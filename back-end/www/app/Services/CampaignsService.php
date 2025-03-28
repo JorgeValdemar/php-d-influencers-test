@@ -70,10 +70,10 @@ class CampaignsService
             $influencersIds = $data['influencers_ids'];
             $saveData = [];
 
-            foreach($influencersIds as $influencer_id) {
+            foreach($influencersIds as $influencerId) {
                 $saveData[] = [
                     'campaign_id' => $campaignId,
-                    'influencer_id' => $influencer_id
+                    'influencer_id' => $influencerId
                 ];
             }
 

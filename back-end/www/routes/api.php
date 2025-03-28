@@ -23,6 +23,8 @@ Route::middleware([JwtMiddleware::class])->group( function (): void {
     Route::controller(InfluencersController::class)->group(function(): void {
         Route::post('/influencers/save', 'saveInfluencers')->name('influencers.save');
         Route::get('/influencers/list', 'listInfluencers')->name('influencers.list');
+        Route::post('/influencers/campaigns/apply', 'applyCampaignsToInfluencer')->name('influencers.campaigns.apply');
+        Route::get('/influencers/campaigns/list/{id}', 'listInfluencerCampaigns')->where(['id' => '[0-9]+'])->name('influencers.campaigns.list');
     });
     
     Route::controller(CampaignsController::class)->group(function(): void {

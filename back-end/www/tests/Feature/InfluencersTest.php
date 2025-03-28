@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Campaigns;
 use App\Models\Influencers;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -16,6 +17,13 @@ class InfluencersTest extends TestCase
         "instagram" => "#super_phpunit",
         "qtd_followers" => 216,
         "category" => "Tecnologia"
+    ];
+
+    private $campaigns = [
+        "name" => "Campanha expressa phpunit",
+        "budget" => 19.90,
+        "begin_date"=>"2024-12-05",
+        "end_date"=>"2024-12-24"
     ];
 
     public function test_register_success(): void
@@ -78,4 +86,80 @@ class InfluencersTest extends TestCase
             ]
         );
     }
+
+    /**
+     * Testa aplicar uma campanha em dois profissionais
+     * @return void
+     */
+    public function test_apply_success_two_influencers(): void
+    {
+        $token = parent::getToken();
+        $influencer = $this->influencer;
+        $influencer['instagram'] = $influencer['instagram'] . "_i_one";
+        
+        $influencer2 = $this->influencer;
+        $influencer2['instagram'] = $influencer2['instagram'] . "_i_two";
+
+        $campaign = Campaigns::create($this->campaigns);
+        $influencerId1 = Influencers::insertGetId($influencer);
+        $influencerId2 = Influencers::insertGetId($influencer2);
+
+        $response = $this->post(route('influencers.campaigns.apply', [
+            "influencer_id" => $influencerId1,
+            "campaigns_ids" => [$campaign->id]
+        ]),[], ['Authorization' => "Bearer ". $token]);
+
+        $response2 = $this->post(route('influencers.campaigns.apply', [
+            "influencer_id" => $influencerId2,
+            "campaigns_ids" => [$campaign->id]
+        ]),[], ['Authorization' => "Bearer ". $token]);
+
+        $response->assertStatus(200)->assertJson(["status" => true]);
+        $response2->assertStatus(200)->assertJson(["status" => true]);
+    }
+    
+
+    public function test_apply_success_two_campaigns(): void
+    {
+        $token = parent::getToken();
+        $influencerSave = $this->influencer;
+        $influencerSave['instagram'] = $influencerSave['instagram'] . '_two_campaigns';
+
+        $influencer = Influencers::create($influencerSave);
+        
+        $campaigns = [];
+        $campaigns[] = Campaigns::insertGetId($this->campaigns);
+        $campaigns[] = Campaigns::insertGetId($this->campaigns);
+
+        $response = $this->post(route('influencers.campaigns.apply', [
+            "influencer_id" => $influencer->id,
+            "campaigns_ids" => $campaigns
+        ]),[], ['Authorization' => "Bearer ". $token]);
+
+        $response->assertStatus(200)->assertJson(["status" => true]);
+    }
+    
+    public function test_apply_duplicated(): void
+    {
+        $token = parent::getToken();
+        $influencer = $this->influencer;
+        $influencer['instagram'] = $influencer['instagram'] . "_duplicated";
+
+        $campaign = Campaigns::create($this->campaigns);
+        $influencer = Influencers::create($influencer);
+
+        $response = $this->post(route('influencers.campaigns.apply', [
+            "influencer_id" => $influencer->id,
+            "campaigns_ids" => [$campaign->id]
+        ]),[], ['Authorization' => "Bearer ". $token]);
+        
+        $response2 = $this->post(route('influencers.campaigns.apply', [
+            "influencer_id" => $influencer->id,
+            "campaigns_ids" => [$campaign->id]
+        ]),[], ['Authorization' => "Bearer ". $token]);
+
+        $response->assertStatus(200)->assertJson(["status" => true]);
+        $response2->assertStatus(200)->assertJson(["error" => "Erro ao cadastrar vinculo"]);
+    }
+    
 }
