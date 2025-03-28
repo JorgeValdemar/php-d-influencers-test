@@ -23,4 +23,15 @@ class InfluencersController extends Controller
         $response = $this->influencersService->listInfluencers();
         return parent::responseSuccess($response);
     }
+    public function applyCampaignsToInfluencer(Request $request): JsonResponse
+    {
+        $response = $this->influencersService->applyCampaignsToInfluencer($request->all());
+        return parent::responseSuccess($response);
+    }
+    
+    public function listInfluencerCampaigns(int $influencerId): JsonResponse
+    {
+        $response = $this->influencersService->listInfluencerCampaigns($influencerId);
+        return parent::responseSuccess($response);
+    }
 }
